@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "//Aleksander-Kovalenko.github.io/goit-react-hw-02-feedback/static/js/main.c9604f2a.js",
-    "index.html": "//Aleksander-Kovalenko.github.io/goit-react-hw-02-feedback/index.html",
-    "main.c9604f2a.js.map": "//Aleksander-Kovalenko.github.io/goit-react-hw-02-feedback/static/js/main.c9604f2a.js.map"
+    "main.js": "/goit-react-hw-02-feedback/static/js/main.c9604f2a.js",
+    "index.html": "/goit-react-hw-02-feedback/index.html",
+    "main.c9604f2a.js.map": "/goit-react-hw-02-feedback/static/js/main.c9604f2a.js.map"
   },
   "entrypoints": [
     "static/js/main.c9604f2a.js"
