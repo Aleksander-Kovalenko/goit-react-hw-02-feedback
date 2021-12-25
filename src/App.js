@@ -1,26 +1,49 @@
 import React, { Component } from 'react';
+import { Container, List } from './App.styled';
 
-import { TodoList } from './TodoList/TodoList';
+import { ButtonReaction } from './ButtonReaction/ButtonReaction';
+import { ReactionList } from './ReactionList/ReactionList';
 
 class App extends Component {
   state = {
-    todos: [
-      { id: 'id-1', text: 'Todo-1', completed: false },
-      { id: 'id-2', text: 'Todo-2', completed: false },
-      { id: 'id-3', text: 'Todo-3', completed: false },
-      { id: 'id-4', text: 'Todo-4', completed: false },
-    ],
+    good: 0,
+    neutral: 0,
+    bad: 0,
   };
 
-  onDeletedTodo = id => {
-    this.setState(preState => ({ todos: preState.todos.filter(todo => todo.id !== id) }));
+  handleReaction = e => {
+    e.preventDefault();
+    const { name } = e.target;
+    this.setState(prevState => {
+      return {
+        [name]: prevState[`${name}`] + 1,
+      };
+    });
   };
+
   render() {
-    const { todos } = this.state;
+    const keys = Object.keys(this.state);
+    const val = Object.values(this.state);
     return (
-      <>
-        <TodoList todos={todos} onDeletedTodo={this.onDeletedTodo} />
-      </>
+      <Container>
+        <h3>Please leave feedback</h3>
+        {keys.map(item => (
+          <ButtonReaction
+            name={item[0].toUpperCase() + item.slice(1)}
+            handleReaction={this.handleReaction}
+          >
+            {item}
+          </ButtonReaction>
+        ))}
+
+        <List>
+          {keys.map((item, index) => (
+            <ReactionList reaction={item}>
+              {item[0].toUpperCase() + item.slice(1)}:{val[index]}
+            </ReactionList>
+          ))}
+        </List>
+      </Container>
     );
   }
 }
