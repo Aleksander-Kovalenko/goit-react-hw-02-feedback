@@ -12,3 +12,5 @@ export const List = styled.ul`
     margin-bottom: 10px;
   }
 `;
+
+export const StaticsInfo = styled.p``;
