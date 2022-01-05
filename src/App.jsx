@@ -32,7 +32,8 @@ class App extends Component {
   countPositiveFeedbackPercentage = () => {
     const values = Object.values(this.state).reduce((a, b) => a + b, 0);
     const average = 100 / (values / this.state.good);
-    return average;
+
+    return average.toFixed(0);
   };
 
   render() {
@@ -42,8 +43,9 @@ class App extends Component {
       <Container>
         <SectionTitle text="Please leave feedback"></SectionTitle>
 
-        {keys.map(item => (
+        {keys.map((item, index) => (
           <ButtonReaction
+            key={index}
             name={item[0].toUpperCase() + item.slice(1)}
             handleReaction={this.handleReaction}
           >
@@ -55,7 +57,7 @@ class App extends Component {
           <>
             <List>
               {keys.map((item, index) => (
-                <ReactionList statics={item}>
+                <ReactionList key={index} statics={item}>
                   {item[0].toUpperCase() + item.slice(1)}:{val[index]}
                 </ReactionList>
               ))}
