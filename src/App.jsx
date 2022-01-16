@@ -4,12 +4,13 @@ import { FeedbackOptions } from './components/FeedbackOptions/FeedbackOptions';
 import { Statistics } from './components/Statistics/Statistics';
 import { Title } from './App.styled';
 import { Section } from './components/Section/Section';
+import { Notification } from './components/Notification/Notification';
 
 class App extends Component {
   state = {
-    good: 8,
-    neutral: 7,
-    bad: 2,
+    good: 0,
+    neutral: 0,
+    bad: 0,
   };
 
   handleButton = state => {
@@ -51,6 +52,11 @@ class App extends Component {
             />
           </Section>
         )}
+        <Section>
+          {!this.countTotalFeedback() > 0 && (
+            <Notification message="There is no feedback"></Notification>
+          )}
+        </Section>
       </>
     );
   }
