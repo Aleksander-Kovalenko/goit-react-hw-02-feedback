@@ -1,17 +1,24 @@
 import styled from '@emotion/styled';
 
+export const Wrapper = styled.div`
+  & > *:not(:last-child) {
+    margin-right: 10px;
+  }
+`;
+
 export const Button = styled.button`
-  min-width: 50px;
+  min-width: 70px;
   padding: 5px;
+  font-size: 18px;
+  font-width: 700px;
+
   text-align: center;
 
   border-radius: 5px;
-  transition: transform 500ms;
+  transition: transform 250ms;
 
   &:hover,
   &:focus-visible {
-    color: white;
-    background-color: teal;
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 `;

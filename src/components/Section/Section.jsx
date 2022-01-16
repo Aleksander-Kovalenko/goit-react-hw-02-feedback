@@ -1,1 +1,8 @@
-export const Section = ({ title }) => <h3>{title}</h3>;
+import { Wrapper } from './Section.styled';
+
+export const Section = ({ title, children }) => (
+  <Wrapper>
+    <h2>{title}</h2>
+    {children}
+  </Wrapper>
+);
