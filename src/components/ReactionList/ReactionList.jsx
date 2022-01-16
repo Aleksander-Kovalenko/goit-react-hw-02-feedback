@@ -1,11 +1,13 @@
-import { ReactionItem } from './ReactionItem';
-
-export const ReactionList = ({ names, numbers }) => {
+export const ReactionList = ({ good, neutral, bad, total, percentage }) => {
   return (
-    <>
-      {names.map((item, i) => (
-        <ReactionItem title={item} value={numbers[i]} />
-      ))}
-    </>
+    <div>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
+      <div>
+        <p>Total: {total}</p>
+        <p>Positive Feedback: {percentage}%</p>
+      </div>
+    </div>
   );
 };

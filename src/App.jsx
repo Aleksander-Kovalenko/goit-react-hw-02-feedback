@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
-import { ReactionButton } from './ReactionButton/ReactionButton';
+
+import { FeedbackOptions } from './ReactionButton/ReactionButton';
 import { ReactionList } from './components/ReactionList/ReactionList';
 import { Container } from './App.styled';
 
@@ -12,27 +12,44 @@ class App extends Component {
   };
 
   handleButton = state => {
-    // console.log(state);
+    const { name } = state.target;
     this.setState(prevState => ({
-      [state]: prevState[state] + 1,
+      [name]: prevState[name] + 1,
     }));
   };
 
-  render() {
-    const keys = Object.keys(this.state);
-    const value = Object.values(this.state);
+  countPositiveFeedbackPercentage = () => {
+    const positiVeFeedback = this.state.good;
+    const average = 100 / (this.countTotalFeedback() / positiVeFeedback);
+    return average.toFixed(0);
+  };
 
-    const renderReactionList = value.reduce((a, item) => a + item, 0);
-    console.log(renderReactionList);
+  countTotalFeedback = () => {
+    return Object.values(this.state).reduce((a, b) => a + b, 0);
+  };
+
+  render() {
+    const { good, neutral, bad } = this.state;
+    const keys = Object.keys(this.state);
+
     return (
       <>
         <Container>
+          <h1>Vanilla Bakery Stats</h1>
           <h2>Please leave Feedback</h2>
-          <ReactionButton title="Good" onClick={this.handleButton} name="good" />
-          <ReactionButton title="Neutral" onClick={this.handleButton} name="neutral" />
-          <ReactionButton title="Bad" onClick={this.handleButton} name="bad" />
+          <FeedbackOptions options={keys} onLeaveFeedback={this.handleButton} />
+          {this.countTotalFeedback() > 0 && (
+            <>
+              <ReactionList
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                total={this.countTotalFeedback()}
+                percentage={this.countPositiveFeedbackPercentage()}
+              />
+            </>
+          )}
         </Container>
-        {renderReactionList > 0 && <ReactionList names={keys} numbers={value} />}
       </>
     );
   }

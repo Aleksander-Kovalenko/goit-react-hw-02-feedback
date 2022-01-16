@@ -1,16 +1,13 @@
-import { Component } from 'react';
+import { nanoid } from 'nanoid';
 
-export class ReactionButton extends Component {
-  handleButton = e => {
-    // console.log(e.target.name);
-    this.props.onClick(e.target.name);
-  };
-  render() {
-    const { title, name } = this.props;
-    return (
-      <button type="submit" name={name} onClick={this.handleButton}>
-        {title}
-      </button>
-    );
-  }
-}
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  return (
+    <div>
+      {options.map(title => (
+        <button key={nanoid(5)} type="submit" name={title} onClick={onLeaveFeedback}>
+          {title[0].toUpperCase() + title.slice(1)}
+        </button>
+      ))}
+    </div>
+  );
+};
