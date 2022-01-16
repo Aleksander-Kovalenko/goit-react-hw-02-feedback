@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
-import { FeedbackOptions } from './ReactionButton/ReactionButton';
-import { ReactionList } from './components/ReactionList/ReactionList';
+import { FeedbackOptions } from './components/FeedbackOptions/FeedbackOptions';
+import { Statistics } from './components/Statistics/Statistics';
 import { Container } from './App.styled';
+import { Section } from './components/Section/Section';
 
 class App extends Component {
   state = {
@@ -19,8 +20,7 @@ class App extends Component {
   };
 
   countPositiveFeedbackPercentage = () => {
-    const positiVeFeedback = this.state.good;
-    const average = 100 / (this.countTotalFeedback() / positiVeFeedback);
+    const average = 100 / (this.countTotalFeedback() / this.state.good);
     return average.toFixed(0);
   };
 
@@ -35,12 +35,13 @@ class App extends Component {
     return (
       <>
         <Container>
-          <h1>Vanilla Bakery Stats</h1>
-          <h2>Please leave Feedback</h2>
+          <Section title="Vanilla Bakery Stats" />
+          <Section title="Please leave Feedback" />
+
           <FeedbackOptions options={keys} onLeaveFeedback={this.handleButton} />
           {this.countTotalFeedback() > 0 && (
             <>
-              <ReactionList
+              <Statistics
                 good={good}
                 neutral={neutral}
                 bad={bad}

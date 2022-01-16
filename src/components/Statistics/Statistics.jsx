@@ -1,6 +1,8 @@
-export const ReactionList = ({ good, neutral, bad, total, percentage }) => {
+import { Container, ContainerProgress } from './Statistics.styled';
+
+export const Statistics = ({ good, neutral, bad, total, percentage }) => {
   return (
-    <div>
+    <Container>
       <p>Good: {good}</p>
       <p>Neutral: {neutral}</p>
       <p>Bad: {bad}</p>
@@ -8,6 +10,6 @@ export const ReactionList = ({ good, neutral, bad, total, percentage }) => {
         <p>Total: {total}</p>
         <p>Positive Feedback: {percentage}%</p>
       </div>
-    </div>
+    </Container>
   );
 };
