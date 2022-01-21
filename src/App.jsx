@@ -14,7 +14,6 @@ class App extends Component {
   };
 
   handleButton = feedback => {
-    // const { name } = feedback.target;
     this.setState(prevState => ({
       [feedback]: prevState[feedback] + 1,
     }));
