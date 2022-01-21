@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import { Wrapper, Button } from './FeedbackOptions.styled';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
@@ -11,10 +10,10 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
     <Wrapper>
       {options.map(title => (
         <Button
-          key={nanoid(4)}
+          key={title}
           type="submit"
           name={title}
-          onClick={onLeaveFeedback}
+          onClick={() => onLeaveFeedback(title)}
           style={{ backgroundColor: `${styled[title]}` }}
         >
           {title[0].toUpperCase() + title.slice(1)}

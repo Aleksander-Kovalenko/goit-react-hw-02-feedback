@@ -13,10 +13,10 @@ class App extends Component {
     bad: 0,
   };
 
-  handleButton = state => {
-    const { name } = state.target;
+  handleButton = feedback => {
+    // const { name } = feedback.target;
     this.setState(prevState => ({
-      [name]: prevState[name] + 1,
+      [feedback]: prevState[feedback] + 1,
     }));
   };
 
@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     const keys = Object.keys(this.state);
-
+    const total = this.countTotalFeedback();
     return (
       <>
         <Title>Vanilla Bakery Stats</Title>
@@ -41,7 +41,7 @@ class App extends Component {
           <FeedbackOptions options={keys} onLeaveFeedback={this.handleButton} />
         </Section>
 
-        {this.countTotalFeedback() > 0 && (
+        {total > 0 && (
           <Section title="All Statistics">
             <Statistics
               good={good}
@@ -53,9 +53,7 @@ class App extends Component {
           </Section>
         )}
         <Section>
-          {!this.countTotalFeedback() > 0 && (
-            <Notification message="There is no feedback"></Notification>
-          )}
+          {!total > 0 && <Notification message="There is no feedback"></Notification>}
         </Section>
       </>
     );
