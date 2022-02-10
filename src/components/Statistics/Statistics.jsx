@@ -8,6 +8,7 @@ export const Statistics = ({ good, neutral, bad, total, percentage }) => {
   };
   return (
     <Container>
+      {/* console.log(); */}
       <StatisticItem style={{ color: `${styled.good}` }}>Good: {good}</StatisticItem>
       <StatisticItem style={{ color: `${styled.neutral}` }}>Neutral: {neutral}</StatisticItem>
       <StatisticItem style={{ color: `${styled.bad}` }}>Bad: {bad}</StatisticItem>
